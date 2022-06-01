@@ -11,4 +11,8 @@ router.register(r'product', views.ProductViewset)
 
 urlpatterns = [
     re_path(r'^', include(router.urls)),
+    re_path(r'order_price/(?P<order>[-\w]+)/$',views.ProductAPIView.list_price),
+    re_path(r'order_popularity/(?P<order>[-\w]+)/$',views.ProductAPIView.list_popularity),
+    re_path(r'order_name/(?P<order>[-\w]+)/$',views.ProductAPIView.list_name),
+
 ]

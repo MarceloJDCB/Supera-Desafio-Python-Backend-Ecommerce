@@ -19,7 +19,7 @@ class ProductSerializer(serializers.ModelSerializer):
     image = Base64ImageField(allow_empty_file=True, 
                              max_length=None, 
                              use_url=False, 
-                             write_only=True, 
+                             #write_only=True, 
                              required=False)
     class Meta:
         model = Product
