@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import base64
 
 class Product(models.Model):
@@ -17,3 +18,9 @@ class Product(models.Model):
         except:
             img = ("Imagem não encontrada no nosso banco de dados...")
         return img
+
+class Order(models.Model):
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    value = models.DecimalField(max_digits=6,decimal_places=2)
+    freight = models.DecimalField(max_digits=5,decimal_places=2)
+    products = models.ManyToManyField(Product)
