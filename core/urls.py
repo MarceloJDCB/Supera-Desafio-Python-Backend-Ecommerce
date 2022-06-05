@@ -23,5 +23,9 @@ urlpatterns = [
         r'^',
         include(("product.urls", "product"), namespace="product")
     ),
+    re_path(
+        r'^',
+        include(("UserManagement.urls", "UserManagement"), namespace="UserManagement")
+    ),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 

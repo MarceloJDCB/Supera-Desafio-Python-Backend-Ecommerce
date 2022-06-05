@@ -5,7 +5,7 @@ import base64
 class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=6,decimal_places=2)
-    popularity = models.IntegerField()
+    score = models.IntegerField()
     image = models.FileField(upload_to='static/imgs')
     
     @property
@@ -19,8 +19,15 @@ class Product(models.Model):
             img = ("Imagem não encontrada no nosso banco de dados...")
         return img
 
+class ProductOrder(models.Model):
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    qty = models.IntegerField()
+    
+
 class Order(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     value = models.DecimalField(max_digits=6,decimal_places=2)
     freight = models.DecimalField(max_digits=5,decimal_places=2)
-    products = models.ManyToManyField(Product)
+    totalprice = models.DecimalField(max_digits=6,decimal_places=2)
+    products = models.ManyToManyField(ProductOrder)
+    

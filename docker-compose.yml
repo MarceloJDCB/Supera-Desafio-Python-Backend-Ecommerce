@@ -1,0 +1,30 @@
+version: "3.2"
+services:
+
+  web:
+    build: .
+    image: superabackend:latest
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=supera
+      - POSTGRES_USER=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_PASSWORD=python
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/posgresql/data
+
+
+
+volumes:
+  pgdata:
