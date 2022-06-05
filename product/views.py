@@ -6,13 +6,12 @@ from django.shortcuts import get_object_or_404
 from rest_framework import status, viewsets
 from .serializers import ProductSerializer,OrderSerializer, ProductOrderSerializer
 from rest_framework.permissions import IsAuthenticated,AllowAny
+from rest_framework.authentication import SessionAuthentication,BasicAuthentication
 from .productfn import ProductFn
 from .models import Product,Order, ProductOrder
 
 class OrderViewset(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
-    authentication_classes = ()
-    
+    permission_classes = (IsAuthenticated,)
     
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
